@@ -1,21 +1,19 @@
 <?php
-
 /*
-//	Menu options for site.
-//	Supplies relevant links depending on whether a user is currently logged in.
-//	Will also highlight current page and render it unclickable.
+** Menu.php
+** Supplies relevant links depending on whether a user is currently logged in.
+***
+**** To Do:
+**** * Highlight current page and render it unclickable.
 */
 
-echo logged_in();
-
-/*
 if ( logged_in() ) {
 
 	?>
 	
 	<a href="index.php">Home</a>
 	|
-	<a href="register.php">Register an Event</a>
+	<a href="register.php">Create an Account</a>
 	
 	<?php
 
@@ -23,7 +21,7 @@ if ( logged_in() ) {
 
 	?>
 	
-	<a href="#">My Event</a>
+	<a href="index.php">My Event</a>
 	|
 	<a href="#">Add Guests</a>
 	|
@@ -31,5 +29,5 @@ if ( logged_in() ) {
 	
 	
 	<?php
-}*/
+}
 ?>

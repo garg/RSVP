@@ -1,4 +1,8 @@
 <?php
+/*
+** Users.func.php
+** Defines functions primarily relating to the 'users' database.
+*/
 
 /*
 //	Function to check if a user is currently logged in.

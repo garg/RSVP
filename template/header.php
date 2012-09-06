@@ -1,3 +1,10 @@
+<?php
+/*
+** Header.php
+** Contains HTML head and information for site header.
+*/
+?>
+
 <!DOCTYPE HTML>
 <head>
       <title>RSVP</title>

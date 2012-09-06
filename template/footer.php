@@ -1,8 +1,15 @@
+<?php
+/*
+** Footer.php
+** Contains information for site footer and ends HTML.
+*/
+?>
+
            </div>
 
       </div>
       <div id="footer">
-           &copy; James O'Neill 2012. All rights reserved.
+           &copy; Copyright Info
       </div>
 
 </body>
