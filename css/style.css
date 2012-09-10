@@ -1,17 +1,15 @@
 /*
 ** Style.css
 ** Contains style rules for the entire site.
+** 
+** This stylesheet is divided into display rules and typography rules.
+** Those sections are then subdivided into general (whole site) rules and special (element specific) rules.
 */
+
+/*///// GENERAL DISPLAY /////*/
 
 body {
   background: ivory;
-  font-family: Georgia;
-  font-size: 12px;
-  margin-top: 50px;
-}
-
-a {
-  color: #000;
 }
 
 #container {
@@ -25,12 +23,23 @@ a {
   padding: 30px;
 }
 
+/*///// SPECIAL DISPLAY /////*/
+
+#header {
+  width: 100%;
+}
+
 #menu {
   width: 800px;
   text-align: right;
   margin-left: auto;
   margin-right: auto;
   padding: 15px;
+}
+
+#main {
+  margin-top: 10px;
+  width: 100%;
 }
 
 #footer {
@@ -41,13 +50,21 @@ a {
   color: #777;
 }
 
-#header {
-  width: 100%;
+.right {
+  display: inline;
+  float: right;
 }
 
-#main {
-  margin-top: 10px;
-  width: 100%;
+
+/*///// GENERAL TYPOGRAPHY /////*/
+
+#container {
+	font-family: Georgia;
+	font-size: 12;
+}
+
+a {
+  color: #000;
 }
 
 input {
@@ -55,7 +72,16 @@ input {
   font-size: 12px;
 }
 
-.right {
-  display: inline;
-  float: right;
-}
+/*///// SPECIAL TYPOGRAPHY /////*/
+
+
+
+
+
+
+
+
+
+
+
+
