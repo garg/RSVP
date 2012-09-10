@@ -5,8 +5,7 @@
 ***
 **** To Do:
 **** * Replace 'lorem ipsum' with proper text.
-**** * Add Login and Invitation Response forms.
-**** * Include central graphic.
+**** * Add central graphic.
 */
 
 
@@ -15,6 +14,12 @@ include 'template/header.php';
 ?>
 
 <p>Lorem ipsum.</p>
+
+<?php if( !logged_in()) : ?>
+
+	<!-- <img src="#"> Graphic to go in here -->
+
+<?php endif; ?>
 
 <?php
 include 'template/footer.php';

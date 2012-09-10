@@ -7,7 +7,7 @@
 **** * Highlight current page and render it unclickable.
 */
 
-if ( logged_in() ) {
+if ( !logged_in() ) {
 
 	?>
 	

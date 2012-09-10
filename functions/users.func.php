@@ -45,4 +45,15 @@ function user_exists() {
 
 }
 
+function login_check( $email, $password ) {
+
+	$email = mysql_real_escape_string( $email );
+	$password = md5( $password );
+	
+	$login_query = mysql_query( "SELECT COUNT(`user_id`) AS `count`, `user_id` FROM `users` WHERE `user_email`='$email' AND `user_password`='$password'" );
+	
+	return (mysql_result( $login_query, 0 ) == 1 ) ? mysql_result( $login_query, 0, 'user_id' ) : false;
+
+}
+
 ?>
