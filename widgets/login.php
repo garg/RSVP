@@ -8,9 +8,9 @@
 <form action="" method="post">
 
 	<p>
+		<input type="submit" value="Log In" />
 		Email: <input type="email" name="login_email" />
 		Password: <input type="password" name="login_password" />
-		<input type="submit" value="Log In" />
 	</p>
 
 </form>

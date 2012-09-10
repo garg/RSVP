@@ -8,6 +8,13 @@
            </div>
 
       </div>
+      
+      <div id="menu">
+           
+           <?php include 'widgets/menu.php'; ?>
+      
+      </div>
+      
       <div id="footer">
            &copy; Copyright Info
       </div>

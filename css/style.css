@@ -16,7 +16,7 @@ body {
 #container {
   width: 800px;
   min-height: 370px;
-  margin: auto;
+  margin: 100px auto;
   background: #fdfdfd;
   border: 1px solid #ccc;
   border-radius: 15px;
@@ -26,21 +26,29 @@ body {
 
 /*///// SPECIAL DISPLAY /////*/
 
+#main {
+  margin-top: 10px;
+  width: 100%;
+}
+
 #header {
   width: 100%;
 }
 
 #menu {
-  width: 800px;
-  text-align: right;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  width: 100%;
+  background-color: black;
+  border-bottom: 3px double white;
+  opacity: 0.8;
+  box-shadow: 0px 5px 10px #888888;
 }
 
-#main {
-  margin-top: 10px;
-  width: 100%;
+#menu:hover {
+	opacity: 1.0;
 }
 
 #footer {
@@ -66,8 +74,12 @@ body, input, textarea {
 
 a {
   color: #000;
+  text-decoration: none;
 }
 
+#menu, #menu a {
+	color: white;
+}
 
 /*///// SPECIAL TYPOGRAPHY /////*/
 

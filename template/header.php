@@ -14,11 +14,6 @@
 </head>
 
 <body> 
-      <div id="menu">
-           
-           <?php include 'widgets/menu.php'; ?>
-      
-      </div>
       
       <div id="container">
            
