@@ -1,10 +1,11 @@
 <?php
+//Check if user is logged in.
 function logged_in() {
 	
 	return isset($_SESSION['user_id']);
 }
 
-
+//Register new user in the database.
 function user_register( $name_1, $name_2, $email, $password ) {
 	
 	$name_1 	= 	mysql_real_escape_string( $name_1 );
@@ -17,16 +18,14 @@ function user_register( $name_1, $name_2, $email, $password ) {
 	return mysql_insert_id();
 }
 
+//Return data for a specific user
+function user_data( $id ) {
 
-function user_login() {
-
+	$id = (int)$id;
+	//To complete...
 }
 
-
-function user_data() {
-
-}
-
+//Check if supplied email address is already listed in the database.
 function user_exists( $email ) {
 
 	$email = mysql_real_escape_string( $email );
@@ -36,7 +35,7 @@ function user_exists( $email ) {
 	return ( mysql_result( $query, 0 ) == 1 ) ? true : false;
 }
 
-
+//Check supplied email address and password against database to see if they match an account.
 function login_check( $email, $password ) {
 
 	$email = mysql_real_escape_string( $email );
@@ -46,5 +45,4 @@ function login_check( $email, $password ) {
 	
 	return (mysql_result( $login_query, 0 ) == 1 ) ? mysql_result( $login_query, 0, 'user_id' ) : false;
 }
-
 ?>

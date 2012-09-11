@@ -5,17 +5,18 @@
 */
 ?>
 
-<form action="" method="post">
+<form action="" method="post" id="inline_login">
 
 	<p>
-		<input type="submit" value="Log In" />
 		Email: <input type="email" name="login_email" />
 		Password: <input type="password" name="login_password" />
+		<input type="submit" value="Log In" />
 	</p>
 
 </form>
-
+	
 <?php
+//Has POST data been received?
 if( isset( $_POST['login_email'], $_POST['login_password'] )) {
 	
 	$login_email = $_POST['login_email'];
@@ -23,22 +24,22 @@ if( isset( $_POST['login_email'], $_POST['login_password'] )) {
 
 	$errors = array();
 	
+	//Has user supplied all required data?
 	if( empty( $login_email ) || empty( $login_password )) {
 		
 		$errors[] = 'Email and Password are required to log in.';
-	
 	} else {
 	
 		$login = login_check( $login_email, $login_password );
 		
+		//Has MySQL query failed?
 		if( $login === false ) {
 		
 			$errors[] = 'Unable to log you in at this time. Please try again later.';
-		
 		}
 	} 
 
-
+	//Are there any error messages to display?
 	if( !empty( $errors )) {
 	
 		foreach( $errors as $error ) {
@@ -47,10 +48,13 @@ if( isset( $_POST['login_email'], $_POST['login_password'] )) {
 	
 		}
 	} else {
-	
+		
+		//Create session.
 		$_SESSION['user_id'] = $login;
 		
+		//Redirect back to homepage.
 		header('Location: index.php');
 		exit();
 	}
 }
+?>

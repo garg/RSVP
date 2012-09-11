@@ -15,14 +15,14 @@
 
 <body> 
       
-      <div id="container">
+	<div id="container">
            
-           <!--<img src="#"> Logo image to go in here. -->
+		<!--<img src="#"> Logo image to go in here. -->
            
-           <span class="right"><!-- Currently displays content on right side of page. It would be better to find a more semantic class name. -->
-                 
-                 <?php include 'widgets/login.php'; ?>
-                 
-           </span>
+		<?php 
+		if( !logged_in() ) {
+			include 'widgets/login.php'; 
+		}
+		?>
 
-           <div id="main">
+        <div id="main">

@@ -25,7 +25,7 @@ if ( !logged_in() ) {
 	|
 	<a href="#">Add Guests</a>
 	|
-	<a href="#">Log Out</a>
+	<a href="logout.php">Log Out</a>
 	
 	
 	<?php
