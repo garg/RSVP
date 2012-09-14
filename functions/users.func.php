@@ -19,10 +19,11 @@ function user_register( $name_1, $name_2, $email, $password ) {
 }
 
 //Return data for a specific user
-function user_data( $id ) {
+function user_data() {
 
-	$id = (int)$id;
-	//To complete...
+	$query = mysql_query( "SELECT `user_name_1`, `user_name_2`, `user_email` FROM `users` WHERE `user_id`=" . $_SESSION['user_id']);
+	$query_result = mysql_fetch_assoc( $query );
+	return $query_result;
 }
 
 //Check if supplied email address is already listed in the database.

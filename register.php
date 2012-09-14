@@ -1,9 +1,11 @@
 <?php
 /*
 ** Register.php
-** Takes user registration details via form, validates them, creates database entry and creates session data.
+** Takes user registration details via form, validates them, then creates database entry creates session data.
+** Protection from SQL injection is handled within functions.
 */
 
+// Include core site settings and functions.
 include 'init.php';
 
 // Is user already logged in?
@@ -13,6 +15,7 @@ if( logged_in() ) {
 	exit();
 }
 
+// Include site header.
 include 'template/header.php';
 ?>
 
@@ -20,7 +23,7 @@ include 'template/header.php';
 
 <?php
 
-//Has POST data been received?
+// Has POST data been received?
 if( isset( $_POST['register_name_1'], $_POST['register_name_2'], $_POST['register_email'], $_POST['register_password'] )) {
 
 	$register_name_1 	= 	$_POST['register_name_1'];
@@ -30,32 +33,32 @@ if( isset( $_POST['register_name_1'], $_POST['register_name_2'], $_POST['registe
 	
 	$errors = array();
 	
-	//Are any of the required fields empty?
+	// Are any of the required fields empty?
 	if( empty( $register_name_1 ) || empty( $register_name_2 ) || empty( $register_email ) || empty( $register_password )) {
 	
 		$errors[] = 'Please supply all of the requested information.';
 	} else {
 		
-		//Is the supplied email address valid?
+		// Is the supplied email address valid?
 		if( filter_var( $register_email, FILTER_VALIDATE_EMAIL ) === false ) {
 		
 			$errors[] = 'The email address you have supplied is invalid.';
 		}
 		
-		//Has the user circumvented maxlength settings?
+		// Has the user circumvented maxlength settings?
 		if( strlen( $register_name_1 ) > 35 || strlen( $register_name_2 ) > 35 || strlen( $register_email ) > 50 || strlen( $register_password ) > 35 ) {
 		
 			$errors[] = 'Not enough characters.';
 		}
 		
-		//Is this email address already in the database?
+		// Is this email address already in the database?
 		if(  user_exists( $register_email ) === true ) {
 		
 			$errors[] = 'An account with that email address already exists.';
 		}
 	}
 	
-	//Are there any error messages to display?
+	// Are there any error messages to display?
 	if( !empty( $errors )) {
 	
 		foreach( $errors as $error ) {
@@ -64,13 +67,13 @@ if( isset( $_POST['register_name_1'], $_POST['register_name_2'], $_POST['registe
 		}
 	} else {
 		
-		//Add user data to database.
+		// Add user data to database.
 		$register = user_register( $register_name_1, $register_name_2, $register_email, $register_password );
 		
-		//Create session.
+		// Create session.
 		$_SESSION['user_id'] = $register;
 		
-		//Redirect back to homepage.
+		// Redirect back to homepage.
 		header('Location: index.php');
 		exit();
 	}
@@ -90,5 +93,6 @@ if( isset( $_POST['register_name_1'], $_POST['register_name_2'], $_POST['registe
 </form>
 
 <?php
+// Include site footer.
 include 'template/footer.php';
 ?>
