@@ -22,7 +22,7 @@
 	<?php else : ?>
 		<a href="view_event.php"><?php echo $event_data['event_name']; ?></a>
 		|
-		<a href="#">Add Guests</a>
+		<a href="add_guests.php">Add Guests</a>
 	<?php endif; ?>
 	|
 	<a href="logout.php">Log Out</a>

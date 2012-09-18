@@ -5,7 +5,7 @@
 */
 ?>
 
-<form action="" method="post" id="inline_login">
+<form action="" method="post" id="login" class="<?php echo $login_class; ?>">
 
 	<p>
 		Email: <input type="email" name="login_email" />

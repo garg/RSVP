@@ -17,10 +17,11 @@ include 'functions/guests.func.php';
 if( logged_in()) {
 	
 	$user_data = user_data();
-}
 
-if( event_exists()) {
-
-	$event_data = get_event();
+	if( event_exists()) {
+	
+		$event_data = get_event();
+	}
+	
 }
 ?>

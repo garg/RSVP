@@ -20,7 +20,10 @@
 		<!--<img src="#"> Logo image to go in here. -->
            
 		<?php 
-		if( !logged_in() ) {
+		if( !logged_in() && $inline_login == true) {
+			
+			$login_class = 'inline';
+			
 			include 'widgets/login.php'; 
 		}
 		?>

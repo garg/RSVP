@@ -62,11 +62,13 @@ body {
 	opacity: 1.0;
 }
 
-/*--- Homepage login form ---*/
-#inline_login {
+/*---login---*/
+#login.inline {
   display: inline;
   float: right;
 }
+
+
 
 
 /*///// GENERAL TYPOGRAPHY /////*/
