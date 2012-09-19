@@ -1,8 +1,9 @@
 <?php
-/*
-** Logout.php
-** Destroys session data and then redirects back to homepage.
-*/
+/**
+ * Logout
+ *
+ * Destroys session data and then redirects back to Index.
+ */
 
 session_start();
 session_destroy();

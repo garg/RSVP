@@ -1,8 +1,9 @@
 <?php
-/*
-** Guests.func.php
-** Defines functions primarily relating to the 'guests' database.
-*/
+/**
+ * Guests.Func
+ * 
+ * Defines functions relating to the 'guests' database.
+ */
 
 function add_guest( $name, $plus1, $event_id ) {
 	
@@ -10,6 +11,23 @@ function add_guest( $name, $plus1, $event_id ) {
 	$plus1 = ( $plus1 === true ) ? '' : 'F';
 	
 	mysql_query( "INSERT INTO `guests` VALUES ('', '" . $_SESSION['user_id'] . "', '$event_id', '$name', '', '', '$plus1')" );
+}
+
+function delete_guests( $id_type, $id ) {
+	
+	$id_type = ( $id_type == 'event' ) ? 'event_id' : 'guest_id';
+	$id = (int)$id;
+	
+	mysql_query( "DELETE FROM `guests` WHERE `$id_type`=$id AND `user_id`=". $_SESSION['user_id'] );
+}
+
+function edit_guest( $id, $name, $plus1 ) {
+	
+	$id = (int)$id;
+	$name = mysql_real_escape_string($name);
+	$plus1 = mysql_real_escape_string($plus1);
+	
+	mysql_query( "UPDATE `guests` SET `guest_name`='$name', `guest_plus1`='$plus1' WHERE `guest_id`=$id AND `user_id`=". $_SESSION['user_id'] );
 }
 
 function get_guests( $event_id ) {
@@ -32,23 +50,6 @@ function get_guests( $event_id ) {
 	return $guests;
 }
 
-function edit_guest( $id, $name, $plus1 ) {
-	
-	$id = (int)$id;
-	$name = mysql_real_escape_string($name);
-	$plus1 = mysql_real_escape_string($plus1);
-	
-	mysql_query( "UPDATE `guests` SET `guest_name`='$name', `guest_plus1`='$plus1' WHERE `guest_id`=$id AND `user_id`=". $_SESSION['user_id'] );
-}
-
-function delete_guests( $id_type, $id ) {
-	
-	$id_type = ( $id_type == 'event' ) ? 'event_id' : 'guest_id';
-	$id = (int)$id;
-	
-	mysql_query( "DELETE FROM `guests` WHERE `$id_type`=$id AND `user_id`=". $_SESSION['user_id'] );
-}
-
 function get_guest_by_id( $id ) {
 	
 	$id = (int)$id;
@@ -63,7 +64,7 @@ function get_guest_by_id( $id ) {
 		LEFT JOIN `events`
 		ON `guests`.`user_id` = `events`.`user_id`
 		WHERE `guests`.`guest_id`=$id
-		");
+	");
 		
 	return mysql_fetch_assoc( $query );
 }
@@ -76,7 +77,5 @@ function guest_response( $id, $attending, $vegetarian, $plus1 ) {
 	$plus1 = mysql_real_escape_string( $plus1 );
 	
 	mysql_query( "UPDATE `guests` SET `guest_attending`='$attending', `guest_vegetarian`='$vegetarian', `guest_plus1`='$plus1' WHERE `guest_id`=$id" ); 
-
 }
-
 ?>

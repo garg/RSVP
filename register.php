@@ -1,9 +1,9 @@
 <?php
-/*
-** Register.php
-** Takes user registration details via form, validates them, then creates database entry creates session data.
-** Protection from SQL injection is handled within functions.
-*/
+/**
+ * Register
+ *
+ * Takes user registration details via form, validates them, then creates database entry creates session data.
+ */
 
 // Include core site settings and functions.
 include 'init.php';
@@ -48,7 +48,7 @@ if( isset( $_POST['register_name_1'], $_POST['register_name_2'], $_POST['registe
 		// Has the user circumvented maxlength settings?
 		if( strlen( $register_name_1 ) > 35 || strlen( $register_name_2 ) > 35 || strlen( $register_email ) > 50 || strlen( $register_password ) > 35 ) {
 		
-			$errors[] = 'Not enough characters.';
+			$errors[] = 'Too many characters.';
 		}
 		
 		// Is this email address already in the database?
@@ -73,8 +73,8 @@ if( isset( $_POST['register_name_1'], $_POST['register_name_2'], $_POST['registe
 		// Create session.
 		$_SESSION['user_id'] = $register;
 		
-		// Redirect back to homepage.
-		header('Location: index.php');
+		// Redirect to Create Event.
+		header('Location: new_event.php');
 		exit();
 	}
 }

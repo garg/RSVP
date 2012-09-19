@@ -1,10 +1,10 @@
-/*
-** Style.css
-** Contains style rules for the entire site.
-** 
-** This stylesheet is divided into display rules and typography rules.
-** Those sections are then subdivided into general (whole site) rules and special (element specific) rules.
-*/
+/**
+ * Style.css
+ * Contains style rules for the entire site.
+ * 
+ * This stylesheet is divided into display rules and typography rules.
+ * Those sections are then subdivided into general (whole site) rules and special (element specific) rules.
+ */
 
 
 /*///// GENERAL DISPLAY /////*/
@@ -69,8 +69,6 @@ body {
 }
 
 
-
-
 /*///// GENERAL TYPOGRAPHY /////*/
 
 body, input, textarea {
@@ -92,4 +90,8 @@ a:hover {
 
 #menu, #menu a {
 	color: #fff;
+}
+
+.error {
+	color: #600;
 }

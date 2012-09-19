@@ -1,22 +1,23 @@
 <?php
-/*
-** Index Page
-** Main landing page for the site.
-***
-**** To Do:
-**** * Replace 'lorem ipsum' with proper text.
-**** * Add central graphic.
-*/
+/**
+ * Index
+ *
+ * Main landing page.
+ */
 
-
+// Include core settings file.
 include 'init.php';
+
+// Include template file, set variable to also include inline login form if user not logged in.
 $inline_login = true;
 include 'template/header.php';
 ?>
 
 <h3>RSVP</h3>
 
-<?php if( !logged_in()) : ?>
+<?php 
+// If no user is logged in show landing page.
+if( !logged_in()) : ?>
 
 	<p>Welcome.</p>
 	<!-- <img src="#"> Graphic to go in here -->
@@ -29,18 +30,24 @@ include 'template/header.php';
 		</p>
 	</form>
 
-<?php else : ?>
+<?php 
+// If a user is logged in show user options.
+else : ?>
 
-	<p>Welcome back <?php echo $user_data['user_name_1']?> and <?php echo $user_data['user_name_2']?>.</p>
+	<p>Welcome back <?php echo $user_data['user_name_1']; ?> and <?php echo $user_data['user_name_2']; ?>.</p>
 	
-	<?php if( event_exists()) : ?>
+	<?php 
+	// If the user has already registered an event show event options.
+	if( event_exists()) : ?>
 		<ul>
 			<li><a href="view_event.php">View <?php echo $event_data['event_name']; ?></a></li>
 			<li><a href="add_guests.php">Add Guests</a></li>
 			<li><a href="edit_account.php">Edit Account</a></li>
 			<li><a href="edit_event.php">Edit <?php echo $event_data['event_name']; ?></a></li>
 		</ul>
-	<?php else : ?>
+	<?php 
+	// If the user has not registered an event link to the New Event page.
+	else : ?>
 	
 		<p>At the moment you have no event registered. <a href="new_event.php">Create an Event</a>.</p>
 	
@@ -49,5 +56,6 @@ include 'template/header.php';
 <?php endif; ?>
 
 <?php
+// Include footer file.
 include 'template/footer.php';
 ?>

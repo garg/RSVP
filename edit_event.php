@@ -1,19 +1,29 @@
 <?php
+/**
+ * Edit Event
+ *
+ * Allows user to edit name and date details of a previously added event.
+ */
+
+// Include core settings file.
 include 'init.php';
 
+// Is user logged in?
+// If not redirect to index.php.
 if( !logged_in() ) {
 
 	header( 'Location: index.php' );
 	exit();
 }
 
+// Include header file
 include 'template/header.php';
 ?>
 
 <h3>Edit Event</h3>
 
 <?php
-
+// Has POST form data been received?
 if( isset( $_POST['edit_event_name'], $_POST['edit_event_day'], $_POST['edit_event_month'], $_POST['edit_event_year'] ) ) {
 	
 	$edit_event_name 	=	$_POST['edit_event_name'];
@@ -23,27 +33,32 @@ if( isset( $_POST['edit_event_name'], $_POST['edit_event_day'], $_POST['edit_eve
 	
 	$errors = array();
 	
+	// Do all the form fields contain data?
 	if( empty( $edit_event_name ) || empty( $edit_event_day ) || empty( $edit_event_year )) {
 		
 		$errors[] = 'Please supply all requested information.';
 	} else {
 		
+		// Has a valid date been supplied?
 		if( checkdate( $edit_event_month, $edit_event_day, $edit_event_year ) == false ) {
 			 
-			// Why does this keep returning false for valid dates?
 			$errors[] = 'Please supply a valid date.';
 
 		} else {
 		
-			$edit_event_date = mktime( 0, 0, 0, $edit_event_month, $edit_event_day, $edit_event_year );
+			// Convert date to timestamp.
+			$edit_event_date = $edit_event_year . '-' . $edit_event_month . '-' . $edit_event_day;
+			$edit_event_timestamp = strtotime( $edit_event_date );
 		
-			if( $edit_event_date < time() ) {
+			// Is the date supplied in the future?
+			if( $edit_event_timestamp < time() ) {
 	
 				$errors[] = 'Please supply a date in the future.';
 			}
 		}
 	}
 	
+	// Have any errors been returned?
 	if( !empty( $errors )) {
 	
 		foreach( $errors as $error ) {
@@ -51,13 +66,17 @@ if( isset( $_POST['edit_event_name'], $_POST['edit_event_day'], $_POST['edit_eve
 			echo '<span class="error">' . $error . '</span><br />';
 		}
 	} else {
-	
-		edit_event( $event_data['event_id'], $edit_event_name, $edit_event_date );
+		
+		// Edit 'events' table then redirect to View Event.
+		edit_event( $event_data['event_id'], $edit_event_name, $edit_event_timestamp );
+		
 		header( 'Location: view_event.php' );
 		exit();
 	}	
 } else {
-
+	
+	// If POST data has not been received set variables based on init.php's $event_data array.
+	
 	$edit_event_name 	=	$event_data['event_name'];
 	$edit_event_day 	=	date( 'j', $event_data['event_date'] );
 	$edit_event_month 	=	date( 'n', $event_data['event_date'] );
@@ -74,14 +93,6 @@ if( isset( $_POST['edit_event_name'], $_POST['edit_event_day'], $_POST['edit_eve
 		Event date:<br />
 		<input type="text" maxlength="2" size="2" name="edit_event_day" value="<?php echo $edit_event_day; ?>" />
 		
-		<?php 
-		function month_selected( $event_month, $option_month ) {
-			if( $event_month == $option_month ) {
-				echo 'selected="selected"';
-			}
-		}
-		?>
-		
 		<select name="edit_event_month">
 			<option value="1" <?php month_selected( $edit_event_month, 1 ); ?>>January</option>
 			<option value="2" <?php month_selected( $edit_event_month, 2 ); ?>>February</option>
@@ -96,6 +107,7 @@ if( isset( $_POST['edit_event_name'], $_POST['edit_event_day'], $_POST['edit_eve
 			<option value="11" <?php month_selected( $edit_event_month, 11 ); ?>>November</option>
 			<option value="12" <?php month_selected( $edit_event_month, 12 ); ?>>December</option>
 		</select>
+		
 		<input type="text" maxlength="4" size="4" name="edit_event_year" value="<?php echo $edit_event_year; ?>" />
 	</p>
 	<p>
@@ -103,4 +115,7 @@ if( isset( $_POST['edit_event_name'], $_POST['edit_event_day'], $_POST['edit_eve
 	</p>
 </form>
 
-<?php include 'template/footer.php'; ?>
+<?php 
+// Include footer file.
+include 'template/footer.php';
+?>
