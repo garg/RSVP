@@ -17,6 +17,7 @@ mysql_select_db( 'rsvp' );
 include 'functions/users.func.php';
 include 'functions/events.func.php';
 include 'functions/guests.func.php';
+include 'classes/form_validator.php';
 
 // Is user logged in?
 if( logged_in()) {

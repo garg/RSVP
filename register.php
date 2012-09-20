@@ -31,7 +31,17 @@ if( isset( $_POST['register_name_1'], $_POST['register_name_2'], $_POST['registe
 	$register_email 	= 	$_POST['register_email'];
 	$register_password 	= 	$_POST['register_password'];
 	
-	$errors = array();
+	$validate = new form_validator();
+	
+	if( $validate->empty_field( $register_name_1 ) == false && $validate->empty_field( $register_name_2 ) == false && $validate->empty_field( $register_email ) && $validate->empty_field( $register_password ) {
+	
+		$validate->check_email( $register_email );
+		
+		$validate->string_length( 'Name ' );
+		$validate->string_length(  );
+		$validate->string_length(  );
+		$validate->string_length(  );
+	}
 	
 	// Are any of the required fields empty?
 	if( empty( $register_name_1 ) || empty( $register_name_2 ) || empty( $register_email ) || empty( $register_password )) {
